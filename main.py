@@ -1,5 +1,4 @@
-from app import app
-from db_config import mysql
+from users import *
 
 if __name__ == "__main__":
     app.run()
