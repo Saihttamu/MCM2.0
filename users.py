@@ -11,8 +11,11 @@ def users():
         try:
             _json = request.json
             _username = _json["username"]
+            print(_username)
             _password = _json["password"]
+            print(_password)
             _email = _json["email"]
+            print(_email)
             # validate the received values
             conn = mysql.connect()
             cursor = conn.cursor()
@@ -37,16 +40,15 @@ def users():
     if request.method == "GET":
         try:
             conn = mysql.connect()
-            cursor = conn.cursor()
+            cursor = conn.cursor(pymysql.cursors.DictCursor)
             cursor.execute("SELECT * FROM users")
             rows = cursor.fetchall()
             resp = jsonify(rows)
             resp.status_code = 200
             cursor.close()
             conn.close()
+            return resp
         except Exception as e:
-            cursor.close()
-            conn.close()
             print(e)
 
 
@@ -207,7 +209,7 @@ def users_sondes():
 def not_found():
     message = {
         "status": 404,
-        "message": "Not Found: " + request.url
+        "message": "Not Found maggle : " + request.url
     }
     resp = jsonify(message)
     resp.status_code = 404
