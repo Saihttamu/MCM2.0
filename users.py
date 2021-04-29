@@ -39,8 +39,10 @@ def users():
 
     if request.method == "GET":
         try:
+            print("Connection à la base de données...")
             conn = mysql.connect()
             cursor = conn.cursor(pymysql.cursors.DictCursor)
+            print("Connection réussie")
             cursor.execute("SELECT * FROM users")
             rows = cursor.fetchall()
             resp = jsonify(rows)
@@ -60,8 +62,11 @@ def user_details():
             _json = request.json
             _id = _json["id_user"]
             _username = _json["username"]
+            print("Connection à la base de données...")
             conn = mysql.connect()
             cursor = conn.cursor(pymysql.cursors.DictCursor)
+            print("Connection réussie")
+
             if _id or _username:
                 if _id:
                     sql = "SELECT id_user, username, email FROM users WHERE id_user = %s"
@@ -92,8 +97,11 @@ def user_details():
             _email = _json["email"]
             _password = _json["password"]
 
+            print("Connection à la base de données...")
             conn = pymysql.connect()
             cursor = conn.cursor()
+            print("Connection réussie")
+
             # on verifie que l'on a l'id et une valeur à changer
             if _id and (_username or _email or _password):
                 sql = "UPDATE users SET "
@@ -155,8 +163,10 @@ def users_sondes():
             _location = _json["location"]
             _id_user = _json["id_user"]
 
+            print("Connection à la base de données...")
             conn = mysql.connect()
             cursor = conn.cursor()
+            print("Connection réussie")
 
             if _location and _id_user:
                 sql = "INSERT INTO probes(location, id_user) VALUES (%s, %S)"
@@ -181,8 +191,11 @@ def users_sondes():
             _id = _json["id_user"]
             _username = _json["username"]
             if _id or _username:
+                print("Connection à la base de données...")
                 conn = mysql.connect()
                 cursor = conn.cursor(pymysql.cursors.DictCursor)
+                print("Connection réussie")
+
                 if _id:
                     sql = "SELECT * FROM probes WHERE id_user=%s"
                     cursor.execute(sql, _id)
