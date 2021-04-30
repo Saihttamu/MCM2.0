@@ -1,5 +1,5 @@
 body{
-	background: url("../image/meteo.jpg") no-repeat center fixed;
+	background: url("meteo.jpg") no-repeat center fixed;
 	background-size: cover;
 }
 #bloc{
