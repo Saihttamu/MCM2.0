@@ -9,7 +9,9 @@ from werkzeug.security import generate_password_hash
 def users():
     if request.method == "POST":
         try:
+            assert (request.is_json, "Wrong request: is not json")
             _json = request.json
+            print("Request : ", _json)
             _username = _json["username"]
             print(_username)
             _password = _json["password"]
@@ -17,8 +19,10 @@ def users():
             _email = _json["email"]
             print(_email)
             # validate the received values
+            print("Connexion à la base de donées...")
             conn = mysql.connect()
             cursor = conn.cursor()
+            print("Connection réussie")
             if _username and _password and _email:
                 _hashed_password = generate_password_hash(_password)
                 # save edits
@@ -111,7 +115,7 @@ def user_details():
                     if param:
                         sql += (string_params[i] + str(param) + ", ")
                     i += 1
-                sql = sql[:len(sql)-2]
+                sql = sql[:len(sql)-2] # On enlève le dernier ", "
                 sql += " WHERE id_user=" + str(_id)
                 cursor.execute(sql)
                 conn.commit()
