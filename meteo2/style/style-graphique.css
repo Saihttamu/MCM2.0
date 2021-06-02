@@ -1,0 +1,27 @@
+body{
+	font-family: 'Russo One', sans-serif;
+	background-color: #5F9EA0;
+}
+div#bloc{
+	display: flex;
+	flex-direction: column;
+}
+div#conteneur1{
+	order: 2;
+	text-align: center;
+	font-size: 1.5rem;
+	position: absolute; 
+  	top: 50%; left: 50%;
+  	transform: translate(-50%, -50%);
+}
+canvas{
+	background-color: white;
+}
+#footer footer p{
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	left: 0;
+	margin: 0 auto;
+	text-align: center;
+}
