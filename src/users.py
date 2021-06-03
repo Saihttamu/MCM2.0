@@ -17,12 +17,10 @@ def users():
             else:
                 _json = request.get_data(True, True, True)
             print("Request : ", _json)
+
             username = _json["username"]
-            print(username)
             password = _json["password"]
-            print(password)
             email = _json["email"]
-            print(email)
             # validate the received values
 
             print("Connexion à la base de donées...")
