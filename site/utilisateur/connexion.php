@@ -1,4 +1,29 @@
-<!DOCTYPE html>
+<?php
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $username = $_POST["username"];
+        $password = $_POST["password"];
+
+        $data = array(
+            "username" => $username,
+            "password" => $password,
+        );
+
+		$http_data = http_build_query($data);
+
+        if ($username != "" && $password != "") {
+            $testReq = curl_init();
+			
+            curl_setopt($testReq, CURLOPT_URL, "localhost:5000/users/details"."?".$http_data);
+            curl_setopt($testReq, CURLOPT_RETURNTRANSFER, TRUE);
+            curl_setopt($testReq, CURLOPT_CUSTOMREQUEST, "GET");
+            $response = curl_exec($testReq);
+            curl_close($testReq);
+        }
+    }
+
+
+?><!DOCTYPE html>
 <html lang="fr-FR">
 <head>
 
@@ -19,12 +44,14 @@
 		<div id="conteneur1">
 			<form action="" method="POST">
 				<div class="mb-3">
-					<label for="pseudo" class="form-label">Votre Pseudo</label><br>
+					<label for="username" class="form-label">Votre Pseudo</label><br>
 					<input type='text' name='username' id='username' placeholder="toto" class="form-label"></input><br>
 			
-					<label for="pseudo" class="form-label">Votre mot de passe</label><br>
+					<label for="password" class="form-label">Votre mot de passe</label><br>
 					<input type='password' name='password' id='password' class="form-label"></input><br>
-					<button type="submit" name="Login" class="btn btn-dark"><a href="../index.php">Se connecter</a></button><button type="submit" name="Login" class="btn btn-dark"><a href="register.php">S'enregistrer</a></button>
+					<button type="submit" name="Login" class="btn btn-dark">Se connecter</button><br>
+					<p>OU</p>
+					<button type="submit" name="Login" class="btn btn-dark"><a href="register.php">S'enregistrer</a></button>
 
 					<span class="color"></span>
 				</div>

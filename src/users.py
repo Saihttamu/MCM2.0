@@ -2,8 +2,8 @@ import pymysql
 from flask import jsonify, request
 from werkzeug.security import generate_password_hash
 
-from ..app import api
-from ..db_config import mysql
+from app import api
+from db_config import mysql
 from errors import *
 
 
@@ -68,10 +68,10 @@ def users():
 def user_details():
     if request.method == "GET":
         try:
-            # on récupères les paramètres rentrés
-            _json = request.json
-            _id = _json["id_user"]
-            _username = _json["username"]
+            # on récupère les paramètres rentrés
+            _data = request.args
+            _id = _data["id_user"]
+            _username = _data["username"]
             print("Connection à la base de données...")
             conn = mysql.connect()
             cursor = conn.cursor(pymysql.cursors.DictCursor)
@@ -163,17 +163,6 @@ def user_details():
         except Exception as e:
             print(e)
 
-
-
-@api.errorhandler(404)
-def not_found():
-    message = {
-        "status": 404,
-        "message": "Not Found : " + request.url
-    }
-    resp = jsonify(message)
-    resp.status_code = 404
-    return resp
 
 if __name__ == "__main__":
     api.run()

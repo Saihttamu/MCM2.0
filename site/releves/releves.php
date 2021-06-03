@@ -1,4 +1,18 @@
-<!DOCTYPE html>
+<?php
+
+    if ($_SERVER["REQUEST_METHOD"] == "GET") {
+
+		// On récupère les mesures
+		$testReq = curl_init();
+        curl_setopt($testReq, CURLOPT_URL, "localhost:5000/measures");
+        curl_setopt($testReq, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($testReq, CURLOPT_CUSTOMREQUEST, "GET");
+        $response = curl_exec($testReq);
+        curl_close($testReq);
+    }
+
+
+?><!DOCTYPE html>
 <html lang="fr-FR">
 <head>
 

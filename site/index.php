@@ -57,6 +57,6 @@
 			<p><strong>By :</strong> Matthias Braneyre, Clément Rafaneau, Mélina Joum.</p>
 		</footer>
 	</div>
-	<script type="text/javascript" src="../js/main.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>

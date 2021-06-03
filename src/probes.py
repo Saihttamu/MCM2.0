@@ -1,15 +1,15 @@
 import pymysql
 from flask import jsonify, request
 
-from ..app import api
-from ..db_config import mysql
+from app import api
+from db_config import mysql
+from errors import *
 
 
 @api.route("/probes", methods=["POST", "GET"])
 def sonde():
     if request.method == "POST":
         try:
-            assert (request.is_json, "Wrong request: is not json")
             _json = request.json
             location = _json["location"]
             print(location)
@@ -67,11 +67,10 @@ def sonde():
             print(e)
 
 
-@api.route("/probes/sonde", methods=["POST", "GET"])
-def sonde():
+@api.route("/probes/details", methods=["POST", "GET"])
+def sonde_details():
     if request.method == "POST":
         try:
-            assert (request.is_json, "Wrong request: is not json")
             _json = request.json
             location = _json["location"]
             print(location)
@@ -127,17 +126,6 @@ def sonde():
 
         except Exception as e:
             print(e)
-
-
-@api.errorhandler(404)
-def not_found():
-    message = {
-        "status": 404,
-        "message": "Not Found : " + request.url
-    }
-    resp = jsonify(message)
-    resp.status_code = 404
-    return resp
 
 
 if __name__ == "__main__":

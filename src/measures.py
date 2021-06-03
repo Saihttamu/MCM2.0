@@ -1,8 +1,8 @@
 import pymysql
 from flask import jsonify, request
 
-from ..app import api
-from ..db_config import mysql
+from app import api
+from db_config import mysql
 from errors import *
 
 
@@ -25,7 +25,7 @@ def releve():
 
             # validate the received values
             conn = mysql.connect()
-            cursor = conn.cursor()
+            cursor = conn.cursor(pymysql.cursors.DictCursor)
 
             if temperature and humidity and date and id_probe and id_measure:
 

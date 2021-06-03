@@ -1,8 +1,33 @@
-<!DOCTYPE html>
-<html lang="fr-FR">
-<head>
+<?php
 
-	
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $username = $_POST["username"];
+        $password = $_POST["password"];
+        $email = $_POST["email"];
+
+        $data = json_encode(array(
+                "username" => $username,
+                "password" => $password,
+                "email"    => $email
+        ));
+
+        if ($username != "" && $password != "" && $email != "") {
+            $testReq = curl_init();
+            curl_setopt($testReq, CURLOPT_URL, "localhost:5000/users");
+            curl_setopt($testReq, CURLOPT_RETURNTRANSFER, TRUE);
+            curl_setopt($testReq, CURLOPT_POST, TRUE); // remove body
+			curl_setopt($testReq, CURLOPT_HTTPHEADER, array("Content-type: application/json"));
+            curl_setopt($testReq, CURLOPT_POSTFIELDS, $data);
+            curl_exec($testReq);
+            curl_close($testReq);
+            
+        }
+    }
+
+
+?><!DOCTYPE html>
+<html lang="fr-FR">
+<head>	
 
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,19 +44,24 @@
 <body>
 	<div id="bloc">
 		<div id="conteneur1">
-			<form action="" method="POST">
-		<div class="mb-3">
-			<label for="pseudo" class="form-label">Choisissez votre pseudo</label><br>
-			<input type='text' name='username' id='username' class="form-label"></input><br>
-		
-			<label for="pseudo" class="form-label">Créer votre mot de passe</label><br>
-			<input type='password' name='password' id='password' class="form-label"></input><br>
-			<button type="submit" name="Login" class="btn btn-dark"><a href="connexion.php">S'enregistrer</a></button>
+			<form method="POST" action="#">
+				<div class="mb-3">
 
-			<span class="color"></span>
-		</div>
+					<label for="email" class="form-label">Votre email</label><br>
+					<input type='text' name='email' id='email' class="form-label"></input><br>
+
+					<label for="username" class="form-label">Votre pseudo</label><br>
+					<input type='text' name='username' id='username' class="form-label"></input><br>
+				
+					<label for="password" class="form-label">Votre mot de passe</label><br>
+					<input type='password' name='password' id='password' class="form-label"></input><br>
+
+					<button type="submit" name="Login" class="btn btn-dark">S'enregistrer</button>
+
+					<span class="color"></span>
+				</div>
 		
-	</form>
+			</form>
 		</div>
 
 		<div id='conteneur2'>

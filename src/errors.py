@@ -1,5 +1,4 @@
-from ..app import api
-from ..db_config import mysql
+from app import api
 from flask import jsonify, request
 
 
@@ -17,13 +16,8 @@ def not_found():
 def bad_request():
     message = {
         "status": 400,
-        "message": "Bad Request : " + request
+        "message": "Bad Request prout: " + request
     }
     resp = jsonify(message)
     resp.status_code = 400
     return resp
-
-@api.errorhandler(500)
-def serv_error():
-    message = {
-        "status": 500,
