@@ -1,0 +1,103 @@
+body{
+	font-family: 'Russo One', sans-serif;
+	background-color: #5F9EA0;
+}
+div#bloc{
+	display: flex;
+	flex-direction: column;
+}
+div#conteneur1{
+	order: 2;
+	text-align: center;
+	font-size: 1.5rem;
+	position: absolute; 
+  	top: 50%; left: 50%;
+  	transform: translate(-50%, -50%);
+}
+canvas{
+	background-color: white;
+}
+#footer footer p{
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	left: 0;
+	margin: 0 auto;
+	text-align: center;
+}
+.box{
+  	display: flex;
+  	margin-top: 10px;
+  	margin-left: 35px;
+}
+#checkbox{
+	width: 65px;
+	height: 65px;
+	cursor: pointer;
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	outline: none;/*enléve la bordure*/
+	background: white;
+	position: relative;
+}
+#checkbox:hover{
+	 background: rgba(255, 255, 255, .7);
+	}
+#checkbox::before{
+  	content: '\f1e0';
+  	position: absolute;
+  	top: 50%;
+  	left: 50%;
+  	transform: translate(-50%, -50%);
+  	font-family: 'font awesome 5 free';
+  	font-weight: 700;
+  	font-size: 1.5rem;
+  	color: rgb(41, 41, 41);
+  	transition: all 1.5s;
+}
+#checkbox:checked::before{
+  	content: '\f00d';
+}
+#checkbox:checked ~ .menu{
+  	width: 264px; /* 4 * 65 + 4 * 1 pour la bordure */
+}
+.menu{
+  	width: 0;
+   	display: flex;
+  	overflow: hidden;
+  	transition: all .5s;
+}
+.menu .menuItems{
+  	width: 65px;
+  	height: 65px;
+  	background: white;
+  	border-left: 1px solid rgb(165, 165, 165);
+  	display: flex;
+  	justify-content: center;
+  	align-items: center;
+}
+.menu .menuItems:hover{
+  	background: rgba(255, 255, 255, .7);
+}
+.menu .menuItems i{
+  	font-size: 1.8rem;
+}
+.fa-whatsapp{
+  	color: #25d366;
+}
+.fa-instagram{
+  	color: #c32aa3;
+}
+.fa-envelope-open-text{
+	color: black;
+}
+.fa-linkedin-in{
+
+}
+.fa-facebook{
+  	color: #273c75;
+}	
+.fa-twitter{
+  	color: #1da1f2;
+}
