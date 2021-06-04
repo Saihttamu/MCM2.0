@@ -1,6 +1,6 @@
 div#mapid{ 
 	width: 50%;
-	height: 50vh;
+	height: 80vh;
 	order: 2;
 	position: absolute; /* position de départ */
   	top: 50%; left: 50%; /* à 50%/50% du parent référent */
