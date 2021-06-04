@@ -88,15 +88,16 @@
 		padding-top: 18px;
 	}
 	#conteneur2 nav{
-		margin-left: -100px;
+		margin-top: 35px;
 	}
 	#conteneur2 nav ul{
 		display: flex;
 		flex-direction: column;
-		align-items: center;
+		align-items: left;
 	}
 	#conteneur2 nav ul li{
-		margin-bottom: 20px;
+		margin-bottom: 25px;
+		border-bottom: 1px solid grey;
 	}
 	#conteneur2 h1{
 		font-size: 2rem;
@@ -150,15 +151,16 @@
 		padding-top: 18px;
 	}
 	#conteneur2 nav{
-		margin-left: -50px;
+		margin-top: 35px;
 	}
 	#conteneur2 nav ul{
 		display: flex;
 		flex-direction: column;
-		align-items: center;
+		align-items: left;
 	}
 	#conteneur2 nav ul li{
-		margin-bottom: 20px;
+		margin-bottom: 25px;
+		border-bottom: 1px solid grey;
 	}
 	#conteneur2 nav a{
 		font-size: 0.8rem;
@@ -182,5 +184,3 @@
 		font-size: 1.5rem;
 	}
 }
-
-
